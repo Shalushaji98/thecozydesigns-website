@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cozy Designs — Clothing &amp; Custom Designing</title>
+<meta name="description" content="Cozy Designs — Custom dress designing, tailoring and bulk supply in Kottayam, Kerala. Fashion With Purpose." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Mulish:wght@400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1. DESIGN TOKENS  — Cozy Designs brand (navy + gold + ivory)
+   ============================================================ */
+:root{
+  --navy:#000000;          /* deep brand navy */
+  --navy-2:#1a1a1a;        /* lighter navy for gradients */
+  --gold:#E6B33A;          /* brand gold */
+  --gold-soft:#F0C763;     /* lighter gold */
+  --ivory:#FBF8F1;         /* warm light background */
+  --ivory-2:#FFFFFF;       /* clean white cards */
+  --ink:#15213F;           /* navy-charcoal text on light */
+  --muted:#6E7488;         /* secondary text on light */
+  --muted-d:#AEB6CC;       /* secondary text on navy */
+  --line:#E7E2D6;          /* hairlines on light */
+  --line-d:rgba(230,179,58,.22); /* gold hairlines on navy */
+  --max:1180px;
+  --gap:clamp(1.25rem,4vw,2.5rem);
+
+  --font-display:"Fraunces", Georgia, "Times New Roman", serif;
+  --font-body:"Mulish", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-script:"Dancing Script", cursive;
+}
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ivory);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gap)}
+
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.eyebrow.on-navy{color:var(--gold)}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.05}
+.script{font-family:var(--font-script);font-weight:700}
+
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+
+/* ============================================================
+   3. WORDMARK  (monogram + COZY DESIGNS)
+   ============================================================ */
+.wordmark{display:inline-flex;align-items:center;gap:.6rem}
+.wordmark svg{flex:0 0 auto}
+.wordmark .name{
+  font-family:var(--font-display);font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--gold);
+  font-size:1.8rem;line-height:1;
+}
+
+/* ============================================================
+   4. NAV
+   ============================================================ */
+.nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-d)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-links{display:flex;gap:1.9rem;align-items:center}
+.nav-links a{font-size:.8rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted-d);transition:color .2s ease}
+.nav-links a:hover{color:var(--gold)}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;font-size:1.4rem;color:var(--gold)}
+.logo-img{height:80px;width:auto;display:block}
+
+/* ============================================================
+   5. HERO  (navy — the brand's own world)
+   ============================================================ */
+.hero{position:relative;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 78%,#1c3573 100%);color:var(--ivory);overflow:hidden}
+.hero-bgmark{position:absolute;right:-6%;top:50%;transform:translateY(-50%);width:min(58vw,640px);opacity:.06;pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center;padding:clamp(3rem,7vw,6rem) 0}
+.hero .script-tag{font-family:var(--font-script);font-weight:700;color:var(--gold);font-size:clamp(1.8rem,4.5vw,2.8rem);line-height:1;margin:.4rem 0 .6rem}
+.hero h1{font-size:clamp(2.4rem,6vw,4.4rem);color:var(--ivory);margin-bottom:1.3rem}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:500}
+.hero p.lead{font-size:1.06rem;color:var(--muted-d);max-width:42ch;margin-bottom:2rem}
+.hero-cta{display:flex;gap:.9rem;flex-wrap:wrap}
+
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.6rem;font-size:.82rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;border:1.5px solid var(--gold);transition:all .2s ease;cursor:pointer}
+.btn-solid{background:var(--gold);color:var(--navy)}
+.btn-solid:hover{background:var(--gold-soft);border-color:var(--gold-soft)}
+.btn-ghost{background:transparent;color:var(--gold)}
+.btn-ghost:hover{background:var(--gold);color:var(--navy)}
+
+.hero-photo{aspect-ratio:4/5;border-radius:8px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid var(--line-d)}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+.ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;text-align:center}
+.ph .star{font-size:1.5rem;color:var(--gold);opacity:.55}
+.ph .ph-cap{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.hero-photo .ph .ph-cap{color:var(--muted-d)}
+
+/* ============================================================
+   6. MARQUEE
+   ============================================================ */
+.marquee{background:var(--navy);border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d);padding:.95rem 0;overflow:hidden}
+.marquee-track{display:flex;gap:2.5rem;white-space:nowrap;width:max-content;animation:slide 30s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee span{font-family:var(--font-display);font-weight:500;font-style:italic;font-size:clamp(1rem,2.2vw,1.45rem);color:var(--ivory);display:inline-flex;align-items:center;gap:2.5rem}
+.marquee span::after{content:"✦";color:var(--gold);font-style:normal;font-size:.7em}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============================================================
+   7. SECTION SCAFFOLD
+   ============================================================ */
+.section{padding:clamp(3.5rem,7vw,6rem) 0}
+.section-head{margin-bottom:2.6rem}
+.section-head h2{font-size:clamp(1.9rem,4.5vw,2.9rem);margin-top:.5rem}
+.section-head .sub{color:var(--muted);max-width:48ch;margin-top:.7rem}
+
+/* ============================================================
+   8. SERVICES GRID
+   ============================================================ */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.9rem,2vw,1.4rem)}
+.service{background:var(--ivory-2);border:1px solid var(--line);border-radius:10px;padding:1.6rem 1.5rem;transition:transform .25s ease,box-shadow .25s ease}
+.service:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(14,30,69,.08)}
+.service .mark{display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:50%;background:rgba(230,179,58,.14);color:var(--gold);font-size:.9rem;margin-bottom:1rem}
+.service h3{font-size:1.12rem;font-weight:600;letter-spacing:0;margin-bottom:.45rem}
+.service p{font-size:.92rem;color:var(--muted)}
+
+/* ---- Kids Wear banner (links to kids.html) ---- */
+.kids-banner{display:grid;grid-template-columns:1.5fr .5fr;align-items:center;gap:2rem;background:linear-gradient(135deg,var(--navy),var(--navy-2));border:1px solid var(--line-d);border-radius:14px;padding:clamp(2rem,5vw,3.4rem);color:var(--ivory);transition:transform .25s ease,box-shadow .25s ease}
+.kids-banner:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(0,0,0,.22)}
+.kids-banner .eyebrow{color:var(--gold)}
+.kids-banner h2{color:var(--ivory);font-size:clamp(1.8rem,4vw,2.6rem);margin:.45rem 0 .7rem}
+.kids-banner p{color:var(--muted-d);max-width:48ch;margin-bottom:1.2rem}
+.kids-banner-cta{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:.82rem;color:var(--gold);border-bottom:2px solid var(--gold);padding-bottom:3px;transition:gap .2s ease}
+.kids-banner:hover .kids-banner-cta{gap:.7rem}
+.kids-banner-art{justify-self:center}
+@media(max-width:700px){.kids-banner{grid-template-columns:1fr}.kids-banner-art{display:none}}
+
+/* ============================================================
+   9. GALLERY
+   ============================================================ */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.7rem,1.6vw,1.1rem)}
+.tile{position:relative}
+.tile-img{aspect-ratio:3/4;border-radius:8px;overflow:hidden;background:var(--ivory-2);border:1px solid var(--line)}
+.tile-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.tile:hover .tile-img img{transform:scale(1.05)}
+.tile .cap{margin-top:.6rem;font-size:.85rem;font-weight:600}
+
+/* ============================================================
+   10. ABOUT
+   ============================================================ */
+.about{background:var(--ivory-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+.about-photo{aspect-ratio:4/5;border-radius:10px;overflow:hidden;background:var(--ivory);border:1px solid var(--line)}
+.about-photo img{width:100%;height:100%;object-fit:cover}
+.about-text .script{color:var(--gold);font-size:1.9rem;line-height:1;display:block;margin-bottom:.3rem}
+.about-text h2{font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:1.2rem}
+.about-text p{color:var(--muted);margin-bottom:1.05rem;max-width:50ch}
+
+/* ============================================================
+   11. VISIT
+   ============================================================ */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3rem)}
+.visit-card{border:1px solid var(--line);border-radius:10px;padding:clamp(1.5rem,3vw,2.2rem);background:var(--ivory-2)}
+.visit-card h3{font-size:1.15rem;font-weight:600;margin-bottom:1rem;letter-spacing:0}
+.visit-row{display:flex;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.visit-row:last-child{border-bottom:0}
+.visit-row .day{color:var(--muted)}
+.visit-card address{font-style:normal;color:var(--muted);line-height:1.75}
+.maplink{display:inline-block;margin-top:1.1rem;font-size:.82rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);border-bottom:2px solid var(--gold);padding-bottom:2px}
+
+/* ============================================================
+   12. CONTACT  (navy bookend)
+   ============================================================ */
+.contact{background:linear-gradient(135deg,var(--navy),var(--navy-2));color:var(--ivory);text-align:center;padding:clamp(4rem,8vw,7rem) 0}
+.contact .script{color:var(--gold);font-size:clamp(1.6rem,4vw,2.4rem);display:block;margin-bottom:.4rem}
+.contact h2{font-size:clamp(2rem,5vw,3.2rem);color:var(--ivory);margin-bottom:1rem}
+.contact p{color:var(--muted-d);max-width:44ch;margin:0 auto 2.3rem}
+.contact-links{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap}
+.contact-links a{font-size:.92rem;font-weight:600;color:var(--ivory);border-bottom:1px solid rgba(230,179,58,.4);padding-bottom:3px;transition:border-color .2s ease}
+.contact-links a:hover{border-color:var(--gold)}
+
+/* ============================================================
+   13. FOOTER
+   ============================================================ */
+.footer{background:var(--navy);padding:2.4rem 0;font-size:.8rem;color:var(--muted-d)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+
+/* ============================================================
+   14. SCROLL REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ============================================================
+   15. RESPONSIVE
+   ============================================================ */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-photo{order:-1;aspect-ratio:4/3;max-height:56vh}
+  .services{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr}
+  .about-photo{aspect-ratio:16/10}
+  .visit-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .nav-links.open{display:flex;position:absolute;top:66px;left:0;right:0;flex-direction:column;gap:0;background:var(--navy);border-bottom:1px solid var(--line-d);padding:.5rem var(--gap) 1rem}
+  .nav-links.open a{padding:.85rem 0;border-bottom:1px solid var(--line-d)}
+  .nav-toggle{display:block}
+}
+@media(max-width:520px){
+  .services{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto}
+  .marquee-track{animation:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .service:hover,.tile:hover .tile-img img{transform:none}
+}
+</style>
+</head>
+<body id="top">
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="wordmark" data-wordmark aria-label="Cozy Designs home"></a>
+    <nav class="nav-links" id="menu">
+      <a href="#services">Services</a>
+      <a href="kids.html">Kids Wear</a>
+      <a href="#gallery">Looks</a>
+      <a href="#about">About</a>
+      <a href="#visit">Visit</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-bgmark" data-bgmark aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <p class="eyebrow on-navy" data-kicker>Clothing for everyone Pala, Kerala</p>
+      <span class="script-tag" data-tagline>Fashion With Purpose</span>
+      <h1 data-headline>Lovingly made clothing for <em>everone</em></h1>
+      <p class="lead" data-lead>A small studio for everyday clothing, custom dress designing, and tailoring — made by hand, built for play, and supplied to families and boutiques alike.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-solid">Get in touch</a>
+        <a href="#services" class="btn btn-ghost">What we do</a>
+      </div>
+    </div>
+    <div class="hero-photo reveal" data-photo="hero"></div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">What we do</p>
+      <h2>Our services</h2>
+      <p class="sub">From a single custom outfit to a full bulk order — everything is designed, stitched, and finished in-house.</p>
+    </div>
+    <div class="services" id="serviceGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== KIDS WEAR (links to the gallery page) ===================== -->
+<section class="section" id="kidswear" style="padding-top:0">
+  <div class="wrap">
+    <a class="kids-banner reveal" href="kids.html">
+      <div>
+        <p class="eyebrow">Special collection</p>
+        <h2>Kids Wear</h2>
+        <p>Soft, playful, and made to last — take a look at our little ones' collection.</p>
+        <span class="kids-banner-cta">View the gallery →</span>
+      </div>
+      <div class="kids-banner-art" aria-hidden="true">
+        <svg width="130" height="150" viewBox="0 0 130 150" fill="none">
+          <path d="M52 32 C44 34 38 42 38 52 L48 60 L44 80 L26 124 Q65 138 104 124 L86 80 L82 60 L92 52 C92 42 86 34 78 32 Q65 44 52 32 Z"
+                stroke="#E6B33A" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="M52 32 Q65 44 78 32" stroke="#E6B33A" stroke-width="2.6"/>
+          <circle cx="65" cy="70" r="2.4" fill="#E6B33A"/>
+          <circle cx="65" cy="84" r="2.4" fill="#E6B33A"/>
+          <path d="M55 96 L65 90 L75 96 L65 102 Z" stroke="#E6B33A" stroke-width="2.4" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section class="section" id="gallery" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">A few looks</p>
+      <h2>Made for little ones</h2>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="section about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo reveal" data-photo="about"></div>
+    <div class="about-text reveal">
+      <span class="script" data-about-script>Fashion With Purpose</span>
+      <h2 data-about-title>Small studio, made with care.</h2>
+      <p data-about-1>Cozy Designs began with a simple idea — clothing should be comfortable, durable, and a little bit special. Every piece is designed and stitched by hand in our Kottayam studio.</p>
+      <p data-about-2>Whether it's one custom dress, a school uniform run, or a bulk order for your boutique, you'll get the same care from start to finish. Come in, choose your fabrics, and we'll shape the perfect look with you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VISIT ===================== -->
+<section class="section" id="visit">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Come say hello</p>
+      <h2>Visit the studio</h2>
+    </div>
+    <div class="visit-grid">
+      <div class="visit-card reveal">
+        <h3>Where to find us</h3>
+        <address data-address></address>
+        <a class="maplink" data-maplink href="#" target="_blank" rel="noopener">Open in maps →</a>
+      </div>
+      <div class="visit-card reveal">
+        <h3>Opening hours</h3>
+        <div id="hours"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="contact" id="contact">
+  <div class="wrap reveal">
+    <span class="script" data-contact-script>Let's create something</span>
+    <h2 data-contact-title>Plan your little one's next outfit.</h2>
+    <p data-contact-sub>Custom orders, sizing, bulk supply, or just a question — message us and we'll get straight back to you.</p>
+    <div class="contact-links" id="contactLinks"></div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="wordmark" data-wordmark></span>
+    <span data-copyright></span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   ★★★  EDIT YOUR SITE HERE  ★★★
+   Change the values below to update your website.
+   Leave a photo as "" to show a tidy placeholder.
+   To use a real photo, put the image file next to this page and
+   write its name, e.g.  hero: "photos/kids-rail.jpg"
+   ============================================================ */
+const SITE = {
+  brand:    "Cozy Designs",
+  tagline:  "Fashion With Purpose",
+  city:     "Pala, Kerala",
+  kicker:   "Clothing brand . Pala, Kerala",
+
+  headline: "Lovingly made clothing for <em>everyone</em>",   // <em> = gold italic
+  lead:     "A small studio for everyday clothing, custom dress designing, and tailoring — made by hand, built for play, and supplied to families and boutiques alike.",
+
+  marquee:  ["Clothing","Custom Designing","Tailoring","Uniforms","Occasion Wear","Alterations","Bulk Supply"],
+
+  services: [
+    { title:"Wholesale & Retail Sales",        text:"Buy a single piece or stock your store — we supply both." },
+    { title:"Custom Dress Designing",          text:"Bespoke outfits designed around your child and your ideas." },
+    { title:"Tailoring & Stitching",           text:"Carefully stitched and finished to last through play." },
+    { title:"Boutique & Bulk Order Supply",    text:"Reliable bulk supply for boutiques, schools, and events." },
+    { title:"Alterations & Sizing",            text:"Perfect fits — resized and adjusted as whenever you need." },
+    { title:"Uniform & Occasion Wear",         text:"School uniforms and festive outfits for every occasion." },
+    { title:"Fabric & Design Consultation",    text:"Sit with us to choose fabrics and shape the perfect look." },
+  ],
+
+  gallery: [
+    { name:"Everyday set",   image:"", tone:"#EDE7D6" },
+    { name:"Festive outfit", image:"", tone:"#E7E9E2" },
+    { name:"School uniform", image:"", tone:"#E5E8EE" },
+    { name:"Custom design",  image:"", tone:"#EFE8DA" },
+  ],
+
+  about: {
+    title:"Small studio, made with care",
+    p1:"Cozy Designs began with a simple idea — clothing should be comfortable, durable, and a little bit special. Every piece is designed and stitched by hand in our Kottayam studio.",
+    p2:"Whether it's one custom dress, a school uniform run, or a bulk order for your boutique, you'll get the same care from start to finish. Come in, choose your fabrics, and we'll shape the perfect look with you.",
+  },
+
+  visit: {
+    address: "First Floor, Puthenpurackal Arcade\nKollappally, Kottayam, Kerala\nPIN: 686651",
+    mapsUrl: "https://maps.google.com/?q=Puthenpurackal+Arcade+Kollappally+Kottayam+Kerala",
+    hours: [   // ← update these to your real hours
+      { day:"Monday – Saturday", time:"09:00 – 05:00" },
+      { day:"Sunday",    time:"Closed" },
+    ],
+  },
+
+  contact: {
+    script:"Let's create something",
+    title:"Plan your next custom outfit.",
+    sub:"Custom orders, sizing, bulk supply, or just a question — message us and we'll get straight back to you.",
+    phone:     "+91 9074816251",
+    whatsapp:  "919074816251",            // number for WhatsApp (no +, no spaces) — or set to ""
+    instagram: "cozy_designs_",           // handle without @
+    website:   "",
+    email:     "",                        // add an email if you'd like one shown
+  },
+
+  photos: { hero:"photos/photos1.jpg", about:"photos/aboutImage.jpg" },          // add image file names to replace the placeholders
+};
+
+/* ============================================================
+   Wiring — you don't need to edit below this line.
+   ============================================================ */
+const $  = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+
+/* monogram: two interlocking gold rings with a needle — a nod to the CD logo */
+const MONO = (size)=>`
+<svg width="${size}" height="${size}" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+  <circle cx="25" cy="32" r="17" stroke="#E6B33A" stroke-width="3"/>
+  <circle cx="39" cy="32" r="17" stroke="#E6B33A" stroke-width="3"/>
+  <line x1="20" y1="44" x2="44" y2="20" stroke="#E6B33A" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="44" cy="20" r="2.4" fill="#E6B33A"/>
+</svg>`;
+
+const LOGO = "photos/COZY Logo WIthout BG.svg";
+$$('[data-wordmark]').forEach(el=>{
+  el.innerHTML = LOGO
+    ? '<img class="logo-img" src="'+LOGO+'" alt="'+SITE.brand+'"><span class="name">'+SITE.brand+'</span>'
+    : MONO(34) + '<span class="name">'+SITE.brand+'</span>';
+});
+$('[data-bgmark]').innerHTML = MONO(640);
+document.title = SITE.brand + " — Clothing & Custom Designing";
+
+/* hero */
+$('[data-kicker]').textContent  = SITE.kicker;
+$('[data-tagline]').textContent = SITE.tagline;
+$('[data-headline]').innerHTML  = SITE.headline;
+$('[data-lead]').textContent    = SITE.lead;
+
+function setPhoto(el,src,cap){
+  el.innerHTML = src
+    ? '<img src="'+src+'" alt="'+cap+'">'
+    : '<div class="ph"><span class="star">✦</span><span class="ph-cap">'+cap+'</span></div>';
+}
+setPhoto($('[data-photo="hero"]'),  SITE.photos.hero,  "Add a photo");
+setPhoto($('[data-photo="about"]'), SITE.photos.about, "Add a photo");
+
+/* marquee (doubled for seamless loop) */
+const mq = SITE.marquee.map(w=>'<span>'+w+'</span>').join('');
+$('#marquee').innerHTML = mq + mq;
+
+/* services */
+$('#serviceGrid').innerHTML = SITE.services.map(s=>
+  '<article class="service reveal"><span class="mark">✦</span>'+
+  '<h3>'+s.title+'</h3><p>'+s.text+'</p></article>'
+).join('');
+
+/* gallery */
+$('#galleryGrid').innerHTML = SITE.gallery.map(g=>{
+  const inner = g.image
+    ? '<img src="'+g.image+'" alt="'+g.name+'">'
+    : '<div class="ph" style="background:'+(g.tone||'#EDE7D6')+'"><span class="ph-cap">'+g.name+'</span></div>';
+  return '<article class="tile reveal"><div class="tile-img">'+inner+'</div><div class="cap">'+g.name+'</div></article>';
+}).join('');
+
+/* about */
+$('[data-about-script]').textContent = SITE.tagline;
+$('[data-about-title]').textContent  = SITE.about.title;
+$('[data-about-1]').textContent      = SITE.about.p1;
+$('[data-about-2]').textContent      = SITE.about.p2;
+
+/* visit */
+$('[data-address]').innerHTML = SITE.visit.address.replace(/\n/g,'<br>');
+$('[data-maplink]').href = SITE.visit.mapsUrl;
+$('#hours').innerHTML = SITE.visit.hours.map(h=>
+  '<div class="visit-row"><span class="day">'+h.day+'</span><span>'+h.time+'</span></div>'
+).join('');
+
+/* contact */
+$('[data-contact-script]').textContent = SITE.contact.script;
+$('[data-contact-title]').textContent  = SITE.contact.title;
+$('[data-contact-sub]').textContent    = SITE.contact.sub;
+const c = SITE.contact, links = [];
+if(c.phone)     links.push('<a href="tel:'+c.phone.replace(/\s/g,'')+'">'+c.phone+'</a>');
+if(c.whatsapp)  links.push('<a href="https://wa.me/'+c.whatsapp+'" target="_blank" rel="noopener">WhatsApp</a>');
+if(c.instagram) links.push('<a href="https://www.instagram.com/cozy_designs__?igsh=bDU5b3FvMDVsc2s2" target="_blank" rel="noopener">@'+c.instagram+'</a>');
+if(c.website)   links.push('<a href="https://'+c.website.replace(/^https?:\/\//,'')+'" target="_blank" rel="noopener">'+c.website+'</a>');
+if(c.email)     links.push('<a href="mailto:'+c.email+'">'+c.email+'</a>');
+$('#contactLinks').innerHTML = links.join('');
+
+/* copyright */
+$('[data-copyright]').textContent = '© ' + new Date().getFullYear() + ' ' + SITE.brand + ' · ' + SITE.city;
+
+/* mobile menu */
+const toggle = $('#navToggle'), menu = $('#menu');
+toggle.addEventListener('click', ()=>{ const o = menu.classList.toggle('open'); toggle.setAttribute('aria-expanded', o); });
+$$('#menu a').forEach(a=>a.addEventListener('click',()=>{ menu.classList.remove('open'); toggle.setAttribute('aria-expanded', false); }));
+
+/* scroll reveal */
+const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+$$('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
