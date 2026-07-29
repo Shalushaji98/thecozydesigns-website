@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kids Wear — Cozy Designs</title>
-<meta name="description" content="Kids wear collection by Cozy Designs — soft, playful, durable children's clothing, made by hand in Kottayam, Kerala." />
+<title>Ladies Wear — Cozy Designs</title>
+<meta name="description" content="Ladies wear collection by Cozy Designs — everyday sets, festive outfits, and custom designs, made by hand in Kottayam, Kerala." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
 
 <style>
 :root{
-  --navy:#000000;          /* matches your home page */
+  --navy:#000000;
   --navy-2:#1a1a1a;
   --gold:#E6B33A;
   --gold-soft:#F0C763;
@@ -54,27 +54,32 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .page-head h1{color:var(--ivory);font-size:clamp(2.4rem,6vw,3.8rem);margin-bottom:1rem}
 .page-head p{color:var(--muted-d);max-width:46ch;margin:0 auto}
 
+/* category nav chips */
+.cat-jump{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:1.6rem}
+.cat-jump a{font-size:.76rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line-d);border-radius:999px;padding:.5rem 1rem;transition:all .2s ease}
+.cat-jump a:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+
 /* gallery */
 .section{padding:clamp(3rem,6vw,5rem) 0}
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.7rem,1.6vw,1.1rem)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.9rem,1.8vw,1.3rem)}
 .tile{position:relative;display:flex;flex-direction:column}
 .tile-img{aspect-ratio:3/4;border-radius:8px;overflow:hidden;background:var(--ivory-2);border:1px solid var(--line);cursor:pointer}
 .tile-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
 .tile:hover .tile-img img{transform:scale(1.05)}
-.tile .cap{margin-top:.6rem;font-size:.88rem;font-weight:600}
-.tile .code{margin-top:.15rem;font-size:.72rem;letter-spacing:.03em;color:var(--muted)}
-.tile .desc{margin-top:.25rem;font-size:.8rem;color:var(--muted);line-height:1.45}
-.tile .price{margin-top:.3rem;font-size:.9rem;font-weight:700;color:var(--ink)}
-.order-btn{display:inline-flex;align-items:center;gap:.35rem;margin-top:.55rem;font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--navy);background:var(--gold);padding:.45rem .85rem;border-radius:999px;transition:background .2s ease;align-self:flex-start}
+.tile .cap{margin-top:.6rem;font-size:.9rem;font-weight:600}
+.tile .code{margin-top:.15rem;font-size:.74rem;letter-spacing:.03em;color:var(--muted)}
+.tile .desc{margin-top:.25rem;font-size:.82rem;color:var(--muted);line-height:1.45}
+.tile .price{margin-top:.35rem;font-size:.94rem;font-weight:700;color:var(--ink)}
+.order-btn{display:inline-flex;align-items:center;gap:.35rem;margin-top:.6rem;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--navy);background:var(--gold);padding:.5rem .9rem;border-radius:999px;transition:background .2s ease;align-self:flex-start}
 .order-btn:hover{background:var(--gold-soft)}
-.ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center}
+.ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem}
 .ph .ph-cap{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.cat{margin-bottom:clamp(2.5rem,5vw,3.6rem)}
+.cat{margin-bottom:clamp(2.5rem,5vw,3.6rem);scroll-margin-top:90px}
 .cat-head{margin-bottom:1.3rem}
 .cat-head h2{font-size:clamp(1.5rem,3.5vw,2.1rem);margin-top:.35rem}
+.empty-note{color:var(--muted);font-size:.92rem;border:1px dashed var(--line);border-radius:10px;padding:1.4rem;text-align:center}
 
 /* "more photos" badge on tiles that have several images */
-.tile-img{position:relative}
 .more-badge{position:absolute;top:.6rem;right:.6rem;display:inline-flex;align-items:center;gap:.3rem;
   background:rgba(0,0,0,.62);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:.04em;
   padding:.28rem .55rem;border-radius:999px;backdrop-filter:blur(3px)}
@@ -89,12 +94,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 
 /* ============================================================
-   LIGHTBOX  (click a dress → view its photos)
+   LIGHTBOX  (click a photo → view all photos for that product)
    ============================================================ */
 .lightbox{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;
   background:rgba(0,0,0,.9);backdrop-filter:blur(4px);padding:clamp(1rem,4vw,3rem)}
 .lightbox.open{display:flex}
-.lb-stage{position:relative;width:100%;max-width:560px;display:flex;flex-direction:column;align-items:center;gap:1rem}
+.lb-stage{position:relative;width:100%;max-width:560px;display:flex;flex-direction:column;align-items:center;gap:.7rem}
 .lb-frame{width:100%;aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:#0d0d0d;border:1px solid var(--line-d)}
 .lb-frame img{width:100%;height:100%;object-fit:contain;background:#0d0d0d}
 .lb-title{font-family:var(--font-display);color:var(--ivory);font-size:1.15rem;text-align:center}
@@ -104,7 +109,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .lb-order:hover{background:var(--gold-soft)}
 .lb-counter{font-size:.78rem;letter-spacing:.1em;color:var(--muted-d)}
 
-/* controls */
 .lb-close{position:fixed;top:clamp(.9rem,3vw,1.5rem);right:clamp(.9rem,3vw,1.5rem);transform:none;z-index:120;
   width:46px;height:46px;border-radius:50%;border:1.5px solid var(--gold);background:rgba(0,0,0,.6);
   color:var(--gold);font-size:1.5rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s ease}
@@ -117,7 +121,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .lb-next{right:-.4rem}
 .lb-nav[disabled]{opacity:0;pointer-events:none}
 
-/* dots */
 .lb-dots{display:flex;gap:.5rem;justify-content:center}
 .lb-dot{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:rgba(230,179,58,.35);cursor:pointer;transition:background .2s ease}
 .lb-dot.active{background:var(--gold)}
@@ -144,10 +147,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 <header class="nav">
   <div class="wrap nav-inner">
     <a href="index.html" class="wordmark" data-wordmark aria-label="Cozy Designs home"></a>
-    <div style="display:flex;align-items:center;gap:1.4rem">
-      <a href="ladies.html" class="back">Ladies Wear</a>
-      <a href="index.html" class="back">← Back to home</a>
-    </div>
+    <a href="index.html" class="back">← Back to home</a>
   </div>
 </header>
 
@@ -155,17 +155,18 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 <header class="page-head">
   <div class="wrap">
     <span class="script">Fashion With Purpose</span>
-    <h1>Kids Wear</h1>
-    <p>Soft, playful, and made to last — a look at the little ones' collection, designed and stitched by hand.</p>
+    <h1>Ladies Wear</h1>
+    <p>Everyday sets, festive outfits, and custom designs — the full collection, designed and stitched by hand.</p>
+    <nav class="cat-jump" id="catJump"></nav>
   </div>
 </header>
 
 <!-- GALLERY -->
 <section class="section">
   <div class="wrap">
-    <div id="kidsSections"></div>
+    <div id="ladiesSections"></div>
     <div class="foot-cta">
-      <a class="btn" href="index.html#contact">Enquire about an outfit →</a>
+      <a class="btn" href="index.html#contact">Enquire about a look →</a>
     </div>
   </div>
 </section>
@@ -178,8 +179,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
   </div>
 </footer>
 
-<!-- LIGHTBOX (built once, reused for every dress) -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Dress photos">
+<!-- LIGHTBOX (built once, reused for every product) -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Product photos">
   <div class="lb-stage">
     <button class="lb-close" id="lbClose" aria-label="Close">×</button>
     <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
@@ -194,14 +195,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
   </div>
 </div>
 
-<!-- shared shop settings (WhatsApp number) — same file used on the Ladies Wear page -->
+<!-- shared product catalog: shop owner edits photos/prices in products.js -->
 <script src="products.js"></script>
 <script>
-/* ============================================================
-   Product data now lives in data/kids.json — the shop owner
-   edits photos, names, descriptions and prices by logging in
-   at yourdomain.com/admin (no code editing needed).
-   ============================================================ */
 const BRAND = "Cozy Designs";
 
 /* ---- wiring (no need to edit) ---- */
@@ -222,58 +218,48 @@ document.querySelectorAll('[data-wordmark]').forEach(el=>{
 
 const TONES = ["#EDE7D6","#E7E9E2","#E5E8EE","#EFE8DA","#E9E4DA","#E4E8E3"];
 
-/* normalise: accept either image:"..." (old) or images:[...] (new) */
-function imgsOf(it){
-  if(Array.isArray(it.images)) return it.images.filter(s=>s && s.trim());
-  if(it.image) return [it.image];
-  return [];
-}
+/* catalog comes from data/ladies.json, which the shop owner edits at /admin */
+const PRODUCTS = [];   // flat list: { name, description, price, images }
 
-/* WhatsApp "order now" link — uses WHATSAPP_NUMBER from products.js */
-function kidsWaLink(item){
-  const bits = ['Hi! I\'m interested in "'+item.name+'"'];
-  if(item.code)  bits.push('(Code: '+item.code+')');
-  if(item.price) bits.push('('+item.price+')');
-  bits.push('— could you share more details?');
-  return 'https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(bits.join(' '));
-}
-
-/* build the grid; remember each dress's photos for the popup */
-const DRESSES = [];   // flat list: { name, description, price, images }
-async function renderKids(){
+async function renderCatalog(){
   await loadSettings();
-  const KIDS = await loadCatalog('data/kids.json');
+  const LADIES_WEAR = await loadCatalog('data/ladies.json');
 
-  $('#kidsSections').innerHTML = KIDS.map(cat=>{
-  const tiles = cat.items.map((it,i)=>{
-    const imgs = imgsOf(it);
-    const cover = imgs[0] || "";
-    const id = DRESSES.length;
-    const name = it.name || cat.category;
-    DRESSES.push({ name, code: it.code || "", description: it.description || "", price: it.price || "", images: imgs });
+  $('#catJump').innerHTML = LADIES_WEAR.map(cat=>'<a href="#'+cat.slug+'">'+cat.category+'</a>').join('');
 
-    const inner = cover
-      ? '<img src="'+cover+'" alt="'+(it.name||cat.category)+'">'
-      : '<div class="ph" style="background:'+TONES[i%TONES.length]+'"><span class="ph-cap">Add photo</span></div>';
+  $('#ladiesSections').innerHTML = LADIES_WEAR.map(cat=>{
+    if(!cat.items || !cat.items.length){
+      return '<div class="cat" id="'+cat.slug+'"><div class="cat-head"><p class="eyebrow">Ladies wear</p>'+
+             '<h2>'+cat.category+'</h2></div><div class="empty-note">Photos coming soon.</div></div>';
+    }
+    const tiles = cat.items.map((it,i)=>{
+      const imgs = ladiesImgsOf(it);
+      const cover = imgs[0] || "";
+      const id = PRODUCTS.length;
+      PRODUCTS.push({ name: it.name || cat.category, code: it.code || "", description: it.description || "", price: it.price || "", images: imgs });
 
-    const badge = imgs.length > 1
-      ? '<span class="more-badge">＋'+(imgs.length-1)+' photos</span>'
-      : '';
+      const inner = cover
+        ? '<img src="'+cover+'" alt="'+(it.name||cat.category)+'">'
+        : '<div class="ph" style="background:'+TONES[i%TONES.length]+'"><span class="ph-cap">Add photo</span></div>';
 
-    const cap   = it.name ? '<div class="cap">'+it.name+'</div>' : '';
-    const code  = it.code ? '<div class="code">Code: '+it.code+'</div>' : '';
-    const desc  = it.description ? '<div class="desc">'+it.description+'</div>' : '';
-    const price = it.price ? '<div class="price">'+it.price+'</div>' : '';
-    const order = '<a class="order-btn" href="'+kidsWaLink({name,code:it.code,price:it.price})+'" target="_blank" rel="noopener">Order now</a>';
-    const clickable = imgs.length ? ' data-dress="'+id+'" role="button" tabindex="0" aria-label="View photos"' : '';
+      const badge = imgs.length > 1
+        ? '<span class="more-badge">＋'+(imgs.length-1)+' photos</span>'
+        : '';
 
-    return '<article class="tile"><div class="tile-img"'+clickable+'>'+inner+badge+'</div>'+cap+code+desc+price+order+'</article>';
-  }).join('');
-  return '<div class="cat"><div class="cat-head"><p class="eyebrow">Kids wear</p>'+
-         '<h2>'+cat.category+'</h2></div><div class="gallery-grid">'+tiles+'</div></div>';
+      const cap   = it.name ? '<div class="cap">'+it.name+'</div>' : '';
+      const code  = it.code ? '<div class="code">Code: '+it.code+'</div>' : '';
+      const desc  = it.description ? '<div class="desc">'+it.description+'</div>' : '';
+      const price = it.price ? '<div class="price">'+it.price+'</div>' : '';
+      const clickable = imgs.length ? ' data-product="'+id+'" role="button" tabindex="0" aria-label="View photos"' : '';
+      const order = '<a class="order-btn" href="'+ladiesWaLink({name:it.name||cat.category,code:it.code,price:it.price})+'" target="_blank" rel="noopener">Order now</a>';
+
+      return '<article class="tile"><div class="tile-img"'+clickable+'>'+inner+badge+'</div>'+cap+code+desc+price+order+'</article>';
+    }).join('');
+    return '<div class="cat" id="'+cat.slug+'"><div class="cat-head"><p class="eyebrow">Ladies wear</p>'+
+           '<h2>'+cat.category+'</h2></div><div class="gallery-grid">'+tiles+'</div></div>';
   }).join('');
 }
-renderKids();
+renderCatalog();
 
 $('[data-copyright]').textContent = '© ' + new Date().getFullYear() + ' ' + BRAND + ' · Kottayam, Kerala';
 
@@ -302,7 +288,7 @@ function render(){
   lbDesc.style.display = current.description ? 'block' : 'none';
   lbPrice.textContent = current.price || '';
   lbPrice.style.display = current.price ? 'block' : 'none';
-  lbOrder.href = kidsWaLink({name:current.name, code:current.code, price:current.price});
+  lbOrder.href = ladiesWaLink({name:current.name, code:current.code, price:current.price});
   const many = imgs.length > 1;
   lbCount.textContent = many ? (i+1) + ' / ' + imgs.length : '';
   lbPrev.disabled = !many;
@@ -311,10 +297,10 @@ function render(){
     '<button class="lb-dot'+(d===i?' active':'')+'" data-dot="'+d+'" aria-label="Photo '+(d+1)+'"></button>'
   ).join('') : '';
 }
-function openDress(id){
-  const d = DRESSES[id];
-  if(!d || !d.images.length) return;
-  current = { name:d.name, code:d.code, description:d.description, price:d.price, images:d.images, i:0 };
+function openProduct(id){
+  const p = PRODUCTS[id];
+  if(!p || !p.images.length) return;
+  current = { name:p.name, code:p.code, description:p.description, price:p.price, images:p.images, i:0 };
   render();
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -329,19 +315,17 @@ function step(n){
   render();
 }
 
-/* open on tile click / keyboard */
-$('#kidsSections').addEventListener('click', e=>{
-  const t = e.target.closest('[data-dress]');
-  if(t) openDress(+t.dataset.dress);
+$('#ladiesSections').addEventListener('click', e=>{
+  const t = e.target.closest('[data-product]');
+  if(t) openProduct(+t.dataset.product);
 });
-$('#kidsSections').addEventListener('keydown', e=>{
-  if((e.key==='Enter'||e.key===' ') && e.target.closest('[data-dress]')){
+$('#ladiesSections').addEventListener('keydown', e=>{
+  if((e.key==='Enter'||e.key===' ') && e.target.closest('[data-product]')){
     e.preventDefault();
-    openDress(+e.target.closest('[data-dress]').dataset.dress);
+    openProduct(+e.target.closest('[data-product]').dataset.product);
   }
 });
 
-/* controls */
 lbPrev.addEventListener('click', ()=>step(-1));
 lbNext.addEventListener('click', ()=>step(1));
 lbClose.addEventListener('click', closeLb);
@@ -349,7 +333,7 @@ lbDots.addEventListener('click', e=>{
   const d = e.target.closest('[data-dot]');
   if(d){ current.i = +d.dataset.dot; render(); }
 });
-lb.addEventListener('click', e=>{ if(e.target===lb) closeLb(); });  /* click backdrop to close */
+lb.addEventListener('click', e=>{ if(e.target===lb) closeLb(); });
 document.addEventListener('keydown', e=>{
   if(!lb.classList.contains('open')) return;
   if(e.key==='Escape') closeLb();
@@ -357,7 +341,6 @@ document.addEventListener('keydown', e=>{
   if(e.key==='ArrowRight') step(1);
 });
 
-/* swipe on touch screens */
 let sx=0;
 lb.addEventListener('touchstart', e=>{ sx = e.touches[0].clientX; }, {passive:true});
 lb.addEventListener('touchend', e=>{

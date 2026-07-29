@@ -1,0 +1,24 @@
+{
+  "categories": [
+    {
+      "category": "New Arrival",
+      "slug": "new-arrival",
+      "items": []
+    },
+    {
+      "category": "Everyday Set",
+      "slug": "everyday-set",
+      "items": []
+    },
+    {
+      "category": "Festive Outfit",
+      "slug": "festive-outfit",
+      "items": []
+    },
+    {
+      "category": "Custom Design",
+      "slug": "custom-design",
+      "items": []
+    }
+  ]
+}
