@@ -1,0 +1,20 @@
+{
+  "categories": [
+    {
+      "category": "Co-ord sets",
+      "items": [
+        {
+          "images": [
+            "/photos/CD-CS-500.2.jpg",
+            "/photos/CD-CS-500.jpg",
+            "/photos/CD-CS-500.jpg"
+          ],
+          "name": "Co-ord set ",
+          "code": "CD-CS-500",
+          "price": "600"
+        }
+      ],
+      "slug": "yellow colour"
+    }
+  ]
+}
