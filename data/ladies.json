@@ -24,7 +24,8 @@
           "name": "ddd",
           "images": [
             "/photos/CD-CS-501.1.jpg"
-          ]
+          ],
+          "also_show_in": "everyday-set"
         }
       ]
     },
