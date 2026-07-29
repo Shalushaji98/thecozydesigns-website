@@ -12,6 +12,22 @@ public_folder: "/photos"
 publish_mode: editorial_workflow
 
 collections:
+  - name: "hero"
+    label: "🖼️ Homepage Banner"
+    files:
+      - name: "hero_slides"
+        label: "Top Banner Photos"
+        file: "data/hero.json"
+        fields:
+          - label: "Photos (shown one at a time, changing automatically)"
+            name: "slides"
+            widget: "list"
+            min: 3
+            max: 3
+            summary: "{{fields.image}}"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+
   - name: "kids"
     label: "👶 Kids Wear"
     files:

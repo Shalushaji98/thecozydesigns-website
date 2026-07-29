@@ -42,6 +42,24 @@ async function loadCatalog(path){
   return [];
 }
 
+/* Loads any JSON file and returns the parsed object, or null if it
+   can't be reached — used for data/hero.json (the top banner photos). */
+async function loadJSON(path){
+  try{
+    const r = await fetch(path, {cache:"no-store"});
+    if(r.ok) return await r.json();
+  }catch(e){ /* fall through */ }
+  return null;
+}
+
+/* Returns the list of photo paths for the homepage banner slider
+   (skips any slide the shop owner hasn't added a photo to yet). */
+async function loadHeroSlides(){
+  const data = await loadJSON('data/hero.json');
+  const slides = (data && Array.isArray(data.slides)) ? data.slides : [];
+  return slides.map(s => s && s.image).filter(s => s && s.trim());
+}
+
 /* ---- shared helpers (no need to edit) ---- */
 function ladiesImgsOf(it){
   if(Array.isArray(it.images)) return it.images.filter(s=>s && s.trim());

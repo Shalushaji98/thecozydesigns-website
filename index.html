@@ -109,8 +109,13 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .btn-ghost{background:transparent;color:var(--gold)}
 .btn-ghost:hover{background:var(--gold);color:var(--navy)}
 
-.hero-photo{aspect-ratio:4/5;border-radius:8px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid var(--line-d)}
+.hero-photo{position:relative;aspect-ratio:4/5;border-radius:8px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid var(--line-d)}
 .hero-photo img{width:100%;height:100%;object-fit:cover}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease}
+.hero-slide.active{opacity:1}
+.hero-dots{position:absolute;left:0;right:0;bottom:.9rem;display:flex;gap:.4rem;justify-content:center;z-index:2}
+.hero-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4);transition:background .2s ease}
+.hero-dot.active{background:var(--gold)}
 .ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;text-align:center}
 .ph .star{font-size:1.5rem;color:var(--gold);opacity:.55}
 .ph .ph-cap{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
@@ -133,6 +138,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .section-head{margin-bottom:2.6rem}
 .section-head h2{font-size:clamp(1.9rem,4.5vw,2.9rem);margin-top:.5rem}
 .section-head .sub{color:var(--muted);max-width:48ch;margin-top:.7rem}
+.gallery-head .eyebrow{color:var(--gold)}
+.gallery-head .script-accent{font-family:var(--font-script);font-weight:700;color:var(--gold);font-size:clamp(1.5rem,3.6vw,2.1rem);line-height:1;display:block;margin:.35rem 0 .1rem}
+.gallery-head h2{font-size:clamp(2.4rem,6vw,3.6rem);position:relative;display:inline-block}
+.gallery-head h2::after{content:"";position:absolute;left:0;bottom:-.4rem;width:64px;height:3px;background:var(--gold);border-radius:2px}
 
 /* ============================================================
    8. SERVICES GRID
@@ -318,28 +327,29 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
         <a href="#services" class="btn btn-ghost">What we do</a>
       </div>
     </div>
-    <div class="hero-photo reveal" data-photo="hero"></div>
+    <div class="hero-photo reveal" id="heroSlider"></div>
   </div>
 </section>
 
 <!-- ===================== MARQUEE ===================== -->
 <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
 
-<!-- ===================== GALLERY (curated look boxes) ===================== -->
+<!-- ===================== NEW ARRIVALS ===================== -->
 <section class="section" id="gallery">
   <div class="wrap">
-    <div class="section-head reveal">
-      <p class="eyebrow">Ladies wear</p>
-      <h2>A few looks, Curated</h2>
-      <p class="sub">A preview of our ladies wear collection — see the full range on the Ladies Wear page.</p>
+    <div class="section-head gallery-head reveal">
+      <p class="eyebrow">Fresh off the table</p>
+      <span class="script-accent">Just In</span>
+      <h2>New Arrivals</h2>
+      <p class="sub">The newest additions to our ladies wear collection.</p>
     </div>
     <div id="looksBoxes"></div>
   </div>
 </section>
 
-<!-- ===================== KIDS WEAR (links to the gallery page) ===================== -->
+<!-- ===================== KIDS WEAR + LADIES WEAR (link to their own pages) ===================== -->
 <section class="section" id="kidswear" style="padding-top:0">
-  <div class="wrap">
+  <div class="wrap" style="display:grid;gap:1.6rem">
     <a class="kids-banner reveal" href="kids.html">
       <div>
         <p class="eyebrow">Special collection</p>
@@ -358,8 +368,26 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
         </svg>
       </div>
     </a>
+
+    <a class="kids-banner reveal" href="ladies.html">
+      <div>
+        <p class="eyebrow">Full collection</p>
+        <h2>Ladies Wear</h2>
+        <p>Everyday sets, festive outfits, and custom designs — browse the complete range.</p>
+        <span class="kids-banner-cta">View the gallery →</span>
+      </div>
+      <div class="kids-banner-art" aria-hidden="true">
+        <svg width="130" height="150" viewBox="0 0 130 150" fill="none">
+          <path d="M65 26 C58 26 52 31 50 38 L44 54 L34 57 L46 128 Q65 138 84 128 L96 57 L86 54 L80 38 C78 31 72 26 65 26 Z"
+                stroke="#E6B33A" stroke-width="2.6" stroke-linejoin="round"/>
+          <circle cx="65" cy="42" r="7" stroke="#E6B33A" stroke-width="2.2"/>
+          <path d="M52 70 Q65 78 78 70" stroke="#E6B33A" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </a>
   </div>
 </section>
+
 
 <!-- ===================== SERVICES ===================== -->
 <section class="section" id="services" style="padding-top:0">
@@ -498,7 +526,7 @@ const SITE = {
     email:     "",                        // add an email if you'd like one shown
   },
 
-  photos: { hero:"photos/photos1.jpg", about:"photos/aboutImage.jpg" },          // add image file names to replace the placeholders
+  photos: { about:"photos/aboutImage.jpg" },          // add image file names to replace the placeholders (hero photos are now edited via /admin → Homepage Banner)
 };
 
 /* ============================================================
@@ -536,8 +564,33 @@ function setPhoto(el,src,cap){
     ? '<img src="'+src+'" alt="'+cap+'">'
     : '<div class="ph"><span class="star">✦</span><span class="ph-cap">'+cap+'</span></div>';
 }
-setPhoto($('[data-photo="hero"]'),  SITE.photos.hero,  "Add a photo");
 setPhoto($('[data-photo="about"]'), SITE.photos.about, "Add a photo");
+
+/* homepage banner — 3 photos, shown one at a time, changing automatically.
+   Edited via /admin → 🖼️ Homepage Banner (data/hero.json). */
+async function renderHeroSlider(){
+  const el = $('#heroSlider');
+  const slides = await loadHeroSlides();
+  if(!slides.length){
+    el.innerHTML = '<div class="ph"><span class="star">✦</span><span class="ph-cap">Add banner photos in Admin → Homepage Banner</span></div>';
+    return;
+  }
+  el.innerHTML = slides.map((src,i)=>
+    '<div class="hero-slide'+(i===0?' active':'')+'"><img src="'+src+'" alt="Cozy Designs — photo '+(i+1)+'"></div>'
+  ).join('') + (slides.length>1
+    ? '<div class="hero-dots">'+slides.map((_,i)=>'<span class="hero-dot'+(i===0?' active':'')+'"></span>').join('')+'</div>'
+    : '');
+  if(slides.length > 1){
+    let i = 0;
+    setInterval(()=>{
+      const els = $$('.hero-slide', el), dots = $$('.hero-dot', el);
+      els[i].classList.remove('active'); dots[i].classList.remove('active');
+      i = (i+1) % els.length;
+      els[i].classList.add('active'); dots[i].classList.add('active');
+    }, 4500);
+  }
+}
+renderHeroSlider();
 
 /* marquee (doubled for seamless loop) */
 const mq = SITE.marquee.map(w=>'<span>'+w+'</span>').join('');
@@ -549,47 +602,47 @@ $('#serviceGrid').innerHTML = SITE.services.map(s=>
   '<h3>'+s.title+'</h3><p>'+s.text+'</p></article>'
 ).join('');
 
-/* gallery — curated look boxes, max 10 photos each, rest live on ladies.html.
-   Data comes from data/ladies.json, which the shop owner edits at /admin */
-const LOOK_MAX = 10;
+/* New Arrivals — pulls only the "New Arrival" category from data/ladies.json,
+   which the shop owner edits at /admin. The rest of the collection (Everyday
+   Set, Festive Outfit, Custom Design) lives on ladies.html. */
+const LOOK_MAX = 12;
 const TONES = ["#EDE7D6","#E7E9E2","#E5E8EE","#EFE8DA","#E9E4DA","#E4E8E3"];
 const PRODUCTS = []; // flat list of shown products, for the lightbox
 
 async function renderLooks(){
   await loadSettings();
-  const LADIES_WEAR = expandAlsoShowIn(await loadCatalog('data/ladies.json'));
+  const LADIES_WEAR = await loadCatalog('data/ladies.json');
+  const cat = LADIES_WEAR.find(c => c.slug === 'new-arrival') || { category:"New Arrivals", slug:"new-arrival", items:[] };
 
-  $('#looksBoxes').innerHTML = LADIES_WEAR.map(cat=>{
-    if(!cat.items || !cat.items.length){
-      return '<div class="look-box reveal"><div class="look-box-head"><p class="eyebrow">Ladies wear</p>'+
-             '<h3>'+cat.category+'</h3></div><div class="empty-note">Photos coming soon.</div>'+
-             '<div class="look-box-foot"><a class="btn btn-ghost" href="ladies.html#'+cat.slug+'">Explore more →</a></div></div>';
-    }
-    const shown = cat.items.slice(0, LOOK_MAX);
-    const tiles = shown.map((it,i)=>{
-      const imgs = ladiesImgsOf(it);
-      const cover = imgs[0] || "";
-      const id = PRODUCTS.length;
-      PRODUCTS.push({ name: it.name || cat.category, code: it.code || "", description: it.description || "", price: it.price || "", images: imgs });
+  if(!cat.items || !cat.items.length){
+    $('#looksBoxes').innerHTML = '<div class="empty-note reveal">Photos coming soon — add them at /admin → Ladies Wear → New Arrival.</div>';
+    $$('#looksBoxes .reveal').forEach(el=>io.observe(el));
+    return;
+  }
 
-      const inner = cover
-        ? '<img src="'+cover+'" alt="'+(it.name||cat.category)+'">'
-        : '<div class="ph" style="background:'+TONES[i%TONES.length]+'"><span class="ph-cap">Add photo</span></div>';
-      const badge = imgs.length > 1 ? '<span class="more-badge">＋'+(imgs.length-1)+' photos</span>' : '';
-      const cap   = it.name ? '<div class="cap">'+it.name+'</div>' : '';
-      const code  = it.code ? '<div class="code">Code: '+it.code+'</div>' : '';
-      const desc  = it.description ? '<div class="desc">'+it.description+'</div>' : '';
-      const price = it.price ? '<div class="price">'+it.price+'</div>' : '';
-      const clickable = imgs.length ? ' data-product="'+id+'" role="button" tabindex="0" aria-label="View photos"' : '';
-      const order = '<a class="order-btn" href="'+ladiesWaLink({name:it.name||cat.category,code:it.code,price:it.price})+'" target="_blank" rel="noopener">Order now</a>';
+  const shown = cat.items.slice(0, LOOK_MAX);
+  const tiles = shown.map((it,i)=>{
+    const imgs = ladiesImgsOf(it);
+    const cover = imgs[0] || "";
+    const id = PRODUCTS.length;
+    PRODUCTS.push({ name: it.name || cat.category, code: it.code || "", description: it.description || "", price: it.price || "", images: imgs });
 
-      return '<article class="tile reveal"><div class="tile-img"'+clickable+'>'+inner+badge+'</div>'+cap+code+desc+price+order+'</article>';
-    }).join('');
+    const inner = cover
+      ? '<img src="'+cover+'" alt="'+(it.name||cat.category)+'">'
+      : '<div class="ph" style="background:'+TONES[i%TONES.length]+'"><span class="ph-cap">Add photo</span></div>';
+    const badge = imgs.length > 1 ? '<span class="more-badge">＋'+(imgs.length-1)+' photos</span>' : '';
+    const cap   = it.name ? '<div class="cap">'+it.name+'</div>' : '';
+    const code  = it.code ? '<div class="code">Code: '+it.code+'</div>' : '';
+    const desc  = it.description ? '<div class="desc">'+it.description+'</div>' : '';
+    const price = it.price ? '<div class="price">'+it.price+'</div>' : '';
+    const clickable = imgs.length ? ' data-product="'+id+'" role="button" tabindex="0" aria-label="View photos"' : '';
+    const order = '<a class="order-btn" href="'+ladiesWaLink({name:it.name||cat.category,code:it.code,price:it.price})+'" target="_blank" rel="noopener">Order now</a>';
 
-    return '<div class="look-box reveal"><div class="look-box-head"><p class="eyebrow">Ladies wear</p>'+
-           '<h3>'+cat.category+'</h3></div><div class="gallery-grid">'+tiles+'</div>'+
-           '<div class="look-box-foot"><a class="btn btn-ghost" href="ladies.html#'+cat.slug+'">Explore more →</a></div></div>';
+    return '<article class="tile reveal"><div class="tile-img"'+clickable+'>'+inner+badge+'</div>'+cap+code+desc+price+order+'</article>';
   }).join('');
+
+  $('#looksBoxes').innerHTML = '<div class="gallery-grid">'+tiles+'</div>'+
+    '<div class="look-box-foot"><a class="btn btn-ghost" href="ladies.html#new-arrival">Explore more →</a></div>';
 
   $$('#looksBoxes .reveal').forEach(el=>io.observe(el));
 }
