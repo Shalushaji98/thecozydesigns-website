@@ -3,7 +3,16 @@
     {
       "category": "New Arrival",
       "slug": "new-arrival",
-      "items": []
+      "items": [
+        {
+          "code": "cdfff",
+          "name": "hghhh",
+          "price": "700",
+          "images": [
+            "/photos/CD-FR-204.jpg"
+          ]
+        }
+      ]
     },
     {
       "category": "Everyday Set",
