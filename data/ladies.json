@@ -11,6 +11,14 @@
           "images": [
             "/photos/CD-FR-204.jpg"
           ]
+        },
+        {
+          "name": "ghhh",
+          "code": "uuu",
+          "price": "677",
+          "images": [
+            "/photos/CD-CS-503.1.jpg"
+          ]
         }
       ]
     },
