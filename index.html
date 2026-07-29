@@ -557,7 +557,7 @@ const PRODUCTS = []; // flat list of shown products, for the lightbox
 
 async function renderLooks(){
   await loadSettings();
-  const LADIES_WEAR = await loadCatalog('data/ladies.json');
+  const LADIES_WEAR = expandAlsoShowIn(await loadCatalog('data/ladies.json'));
 
   $('#looksBoxes').innerHTML = LADIES_WEAR.map(cat=>{
     if(!cat.items || !cat.items.length){

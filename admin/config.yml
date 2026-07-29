@@ -69,6 +69,16 @@ collections:
                     widget: "list"
                     summary: "{{fields.image}}"
                     field: {label: "Photo", name: "image", widget: "image"}
+                  - label: "Also list under"
+                    name: "also_show_in"
+                    widget: "select"
+                    required: false
+                    hint: "Mainly for New Arrival products — also shows this product in one more box/category, without having to add the photo twice."
+                    options:
+                      - {label: "— None —", value: ""}
+                      - {label: "Everyday Set", value: "everyday-set"}
+                      - {label: "Festive Outfit", value: "festive-outfit"}
+                      - {label: "Custom Design", value: "custom-design"}
 
   - name: "settings"
     label: "⚙️ Shop Settings"

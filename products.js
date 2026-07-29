@@ -54,3 +54,20 @@ function ladiesWaLink(p){
   bits.push('— could you share more details?');
   return 'https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(bits.join(' '));
 }
+
+/* If a product has "also_show_in" set (e.g. a New Arrival that should also
+   appear under Everyday Set), this copies it into that category's list too —
+   without the shop owner needing to add the photo a second time. The product
+   still stays in its original category as well. */
+function expandAlsoShowIn(categories){
+  const bySlug = {};
+  const out = categories.map(c => { const copy = {...c, items:[...(c.items||[])]}; bySlug[c.slug] = copy; return copy; });
+  categories.forEach(c=>{
+    (c.items||[]).forEach(it=>{
+      if(it.also_show_in && bySlug[it.also_show_in] && it.also_show_in !== c.slug){
+        bySlug[it.also_show_in].items.push(it);
+      }
+    });
+  });
+  return out;
+}
