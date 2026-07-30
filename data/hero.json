@@ -1,7 +1,13 @@
 {
   "slides": [
-    { "image": "photos/photos1.jpg" },
-    { "image": "" },
-    { "image": "" }
+    {
+      "image": "photos/photos1.jpg"
+    },
+    {
+      "image": "/photos/CD-FR-208.3.jpg"
+    },
+    {
+      "image": "/photos/CD-FR-205.3.jpg"
+    }
   ]
 }
