@@ -3,7 +3,23 @@
     {
       "category": "New Arrival",
       "slug": "new-arrival",
-      "items": []
+      "items": [
+        {
+          "name": "ghhh",
+          "code": "uuu",
+          "price": "677",
+          "images": [
+            "/photos/CD-CS-503.1.jpg"
+          ]
+        },
+        {
+          "name": "ddd",
+          "images": [
+            "/photos/CD-CS-501.1.jpg"
+          ],
+          "also_show_in": "everyday-set"
+        }
+      ]
     },
     {
       "category": "Everyday Set",
