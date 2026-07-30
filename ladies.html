@@ -223,7 +223,8 @@ const PRODUCTS = [];   // flat list: { name, description, price, images }
 
 async function renderCatalog(){
   await loadSettings();
-  const LADIES_WEAR = expandAlsoShowIn(await loadCatalog('data/ladies.json'));
+  const LADIES_WEAR = expandAlsoShowIn(await loadCatalog('data/ladies.json'))
+    .filter(cat => cat.slug !== 'new-arrival'); // New Arrivals now lives only on the homepage
 
   $('#catJump').innerHTML = LADIES_WEAR.map(cat=>'<a href="#'+cat.slug+'">'+cat.category+'</a>').join('');
 

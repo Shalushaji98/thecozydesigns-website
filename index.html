@@ -605,7 +605,7 @@ $('#serviceGrid').innerHTML = SITE.services.map(s=>
 /* New Arrivals — pulls only the "New Arrival" category from data/ladies.json,
    which the shop owner edits at /admin. The rest of the collection (Everyday
    Set, Festive Outfit, Custom Design) lives on ladies.html. */
-const LOOK_MAX = 12;
+const LOOK_MAX = 20;
 const TONES = ["#EDE7D6","#E7E9E2","#E5E8EE","#EFE8DA","#E9E4DA","#E4E8E3"];
 const PRODUCTS = []; // flat list of shown products, for the lightbox
 
@@ -641,8 +641,7 @@ async function renderLooks(){
     return '<article class="tile reveal"><div class="tile-img"'+clickable+'>'+inner+badge+'</div>'+cap+code+desc+price+order+'</article>';
   }).join('');
 
-  $('#looksBoxes').innerHTML = '<div class="gallery-grid">'+tiles+'</div>'+
-    '<div class="look-box-foot"><a class="btn btn-ghost" href="ladies.html#new-arrival">Explore more →</a></div>';
+  $('#looksBoxes').innerHTML = '<div class="gallery-grid">'+tiles+'</div>';
 
   $$('#looksBoxes .reveal').forEach(el=>io.observe(el));
 }
