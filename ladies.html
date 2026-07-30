@@ -41,10 +41,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 
 /* nav */
 .nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-d)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem 1rem;min-height:66px;padding:.7rem 0}
 .wordmark{display:inline-flex;align-items:center;gap:.6rem}
 .wordmark .name{font-family:var(--font-display);font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-size:1.8rem;line-height:1}
 .back{font-size:.8rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted-d);transition:color .2s ease}
+@media(max-width:480px){.back{font-size:.7rem}.nav-inner{gap:.4rem .7rem}}
 .back:hover{color:var(--gold)}
 .logo-img{height:80px;width:auto;display:block}
 
